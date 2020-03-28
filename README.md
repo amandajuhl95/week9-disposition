@@ -7,45 +7,67 @@
 •	Cæsar Shift – brugt siden romertiden, og er super simpelt
  
 •	Enigma er en maskine som blev brugt af nazisterne under anden verdenskrig til symmetrisk kryptering
+
 •	Symmetrisk bruger kun 1 key til at kryptere og dekryptere
+
 •	Https bruger symmetrisk kryptering, fordi det er nemmere og derfor hurtigere
+
 •	Bruges derfor ofte til kommunikation, efter at en sikker forbindelse er etableret med asymmetrisk kryptering
 
 #### Asymmetric Encryption
 
 •	RSA kryptering – Anvender primtal som gør det sværere at dekryptere, medmindre man bruger lave primtal
-•	Kom første gang på tale i 1870, men der gik ca. 100 år før det blev udviklet
-•	Bruger 2 keys (private og public) Public til at kryptere og private til at dekryptere
-•	Denne type er tung og tager lang tid, og bruges derfor ikke så tit når først en sikker forbindelse er etableret, men til at skabe en sikker forbindelse ved at udveksle public keys.
-•	Bruges bla. Til at etablere SSH-forbindelser
-•	Det kan gøres omvendt, men det bruges sjældent, da det giver mere mening at alle kan kryptere, men ikke dekryptere, frem for det modsatte
-•	Den omvendte metode anvendes oftest til at lave certifikater
 
+•	Kom første gang på tale i 1870, men der gik ca. 100 år før det blev udviklet
+
+•	Bruger 2 keys (private og public) Public til at kryptere og private til at dekryptere
+
+•	Denne type er tung og tager lang tid, og bruges derfor ikke så tit når først en sikker forbindelse er etableret, men til at skabe en sikker forbindelse ved at udveksle public keys.
+
+•	Bruges bla. Til at etablere SSH-forbindelser
+
+•	Det kan gøres omvendt, men det bruges sjældent, da det giver mere mening at alle kan kryptere, men ikke dekryptere, frem for det modsatte
+
+•	Den omvendte metode anvendes oftest til at lave certifikater
 
 #### Hashing
 
 •	Envejs algoritme – man kan ikke få den originale værdi ud fra en hashværdi
+
 •	Generere en værdi eller flere ud fra tekst ve brug af en matematiske funktion
+
 •	Kan bruges til sikkerhed i beskedtransmissionsprocessen, hvis beskeden kun er tiltænkt en specifik modtager
+
 •	Beskytter beskeden mod uønskede ændringer
+
 •	Hashing bruges også som metode til at sortere nøgle værdier i en database tabel
+
 •	Algoritmen skal være tidstagende for at være sikker, og modstå hackere
+
 •	Hashing bruges til at sikker at man har fået den rigtige public key ved SSH-forbindelser
 
 ### Explain what it takes to safely log in to an SSH server, without having to provide a password
 
 •	Klientens public key skal ligges manuelt ind på serveren i filen ~/.ssh/authorized_keys
+
 •	Første gang klienten så tilgår serveren, vil serverens public key blive sendt til klienten, sammen med den algoritme der bruges til at hashe den
+
 •	Klienten bliver bedt om manuelt at godkende den sendte public key ved at få præsenteret en hashværdi af den, genereret med den sendte algoritme 
+
 •	Denne skal sammenlignes med den hashværdi som serveren har af nøglen
+
 •	Hvis disse stemmer overens, tilføjes public key til en fil der hedder ”known hosts” hos klienten
+
 •	På denne måde kender begge parter hinanden næste gang der logges in, og kan fortage log in uden adgangskode
 
 ### Explain the term SSH-tunnel, and provide a practical example for its use
  
 •	SSH-tunnel vil sige at tilgå serveren gennem en åben SSH port (port 22) til en bruger på serveren som har adgang til de porte som er lukket for udefra kommende forbindelser f.eks. en database forbindelse (port 3306)
+
 •	SSH-tunnels kan derfor bruges til at for adgang til services på tværs af firewalls
-•	Praktisk eksempel med forbindelse til databasen (se under ”Connecting to MySQL via an SSH Tunnel”): https://docs.google.com/document/d/1L3DTzTv3yR9yM3h843e1LxAmQnHX0p7-A58OJLBBgsA/edit#
+
+•	Praktisk eksempel med forbindelse til databasen (se under ”Connecting to MySQL via an SSH Tunnel”): 
+https://docs.google.com/document/d/1L3DTzTv3yR9yM3h843e1LxAmQnHX0p7-A58OJLBBgsA/edit#
 
 ### Explain the steps you have to go through to set up a server with MySQL, as secure as possible → 
 
